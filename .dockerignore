@@ -1,0 +1,24 @@
+# Arquivos de build
+Dockerfile
+docker-compose.yml
+
+# Arquivos de configuração
+.env
+.env.*
+
+# Arquivos de versionamento
+.git
+.gitignore
+
+# Arquivos temporários
+.tmp
+.temp
+*.log
+
+# Dependências e arquivos de compilação
+node_modules
+target
+build
+bin
+
+# Outros arquivos e pastas que não devem ser incluídos na imagem Docker
