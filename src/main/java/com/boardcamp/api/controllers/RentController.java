@@ -1,5 +1,6 @@
 package com.boardcamp.api.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,12 +28,12 @@ public class RentController {
     public ResponseEntity<RentResponse> createRent(@Valid @RequestBody RentRequest rentRequest) {
         RentResponse savedRent = rentService.createRent(rentRequest);
 
-        return ResponseEntity.ok(savedRent);
+        return new ResponseEntity(savedRent, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}/return")
     public ResponseEntity<RentResponse> returnRental(@PathVariable Long id) {
-        RentResponse returnedRent = rentService.returnRental(id);
+        RentResponse returnedRent = rentService.returnRental(id); 
 
         return ResponseEntity.ok(returnedRent);
     }

@@ -7,6 +7,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import com.boardcamp.api.errors.ClientNotFoundException;
+import com.boardcamp.api.errors.CpfInvalidError;
 import com.boardcamp.api.errors.ExistingCpfExceptionError;
 import com.boardcamp.api.models.ClientModel;
 import com.boardcamp.api.repositories.ClientRepository;
@@ -29,7 +30,7 @@ public class ClientService {
         if (optionalClient.isPresent()) {
             return optionalClient.get();
         } else {
-            throw new ClientNotFoundException("Cliente não encontrado com esse ID");
+            throw new ClientNotFoundException("Client not found with this ID");
         }
     }
 
@@ -45,11 +46,9 @@ public class ClientService {
     }
 
     private void validateClientData(ClientModel clientData) {
-        if (clientData == null ||
-                StringUtils.isEmpty(clientData.getName()) ||
-                StringUtils.isEmpty(clientData.getCpf()) ||
-                !isValidCpf(clientData.getCpf())) {
-            throw new IllegalArgumentException("Nome, CPF e formato de CPF são obrigatórios");
+        if (clientData == null || StringUtils.isEmpty(clientData.getName()) ||
+                StringUtils.isEmpty(clientData.getCpf()) || !isValidCpf(clientData.getCpf())) {
+            throw new CpfInvalidError("Invalid, empty, or null CPF");
         }
     }
 

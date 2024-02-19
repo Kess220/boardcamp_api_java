@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.boardcamp.api.errors.BodyRequestError;
 import com.boardcamp.api.errors.DuplicateGameNameError;
-import com.boardcamp.api.errors.NotFoundError;
 import com.boardcamp.api.models.GameModel;
 import com.boardcamp.api.repositories.GameRepository;
 
@@ -23,12 +22,7 @@ public class GameService {
     }
 
     public List<GameModel> getGames() {
-        List<GameModel> games = gameRepository.findAll();
-        if (games.isEmpty()) {
-            throw new NotFoundError("Nenhum jogo encontrado");
-        }
-
-        return games;
+        return gameRepository.findAll();
     }
 
     @Transactional
@@ -36,15 +30,15 @@ public class GameService {
         if (gameData == null || StringUtils.isBlank(gameData.getName()) || StringUtils.isBlank(gameData.getImage())
                 || gameData.getStockTotal() == null || gameData.getPricePerDay() == null) {
             throw new BodyRequestError(
-                    "O corpo da requisição está incompleto ou contém campos vazios. Verifique os campos.");
+                    "The request body is incomplete or contains empty fields. Check the fields.");
         }
 
         if (gameData.getStockTotal() <= 0 || gameData.getPricePerDay() <= 0) {
-            throw new BodyRequestError("Os campo stockTotal e pricePerDay tem que ser maiores que 0");
+            throw new BodyRequestError("The stockTotal and pricePerDay fields must be greater than 0");
         }
 
         if (gameRepository.existsByName(gameData.getName())) {
-            throw new DuplicateGameNameError("Já existe um jogo cadastrado com o mesmo nome");
+            throw new DuplicateGameNameError("There is already a game registered with the same name");
         }
         return gameRepository.save(gameData);
     }

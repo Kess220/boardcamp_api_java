@@ -12,6 +12,7 @@ import com.boardcamp.api.dtos.RentRequest;
 import com.boardcamp.api.dtos.RentResponse;
 import com.boardcamp.api.errors.BadRequestError;
 import com.boardcamp.api.errors.NotFoundError;
+import com.boardcamp.api.errors.RentalAlreadyReturnedError;
 import com.boardcamp.api.errors.UnavailableGamesError;
 import com.boardcamp.api.models.ClientModel;
 import com.boardcamp.api.models.GameModel;
@@ -128,7 +129,7 @@ public class RentService {
 
         private void validateReturn(RentModel rent) {
                 if (rent.getReturnDate() != null) {
-                        throw new BadRequestError("This rental has already been returned");
+                        throw new RentalAlreadyReturnedError("This rental has already been returned");
                 }
         }
 

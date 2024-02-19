@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.boardcamp.api.errors.BadRequestError;
 import com.boardcamp.api.errors.BodyRequestError;
 import com.boardcamp.api.errors.ClientNotFoundException;
+import com.boardcamp.api.errors.CpfInvalidError;
 import com.boardcamp.api.errors.DuplicateGameNameError;
 import com.boardcamp.api.errors.ExistingCpfExceptionError;
 import com.boardcamp.api.errors.NotFoundError;
+import com.boardcamp.api.errors.RentalAlreadyReturnedError;
 import com.boardcamp.api.errors.UnavailableGamesError;
 
 @ControllerAdvice
@@ -43,12 +45,22 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({ UnavailableGamesError.class })
     public ResponseEntity<Object> handleUnavailableGames(UnavailableGamesError exception) {
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(exception.getMessage());  
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
     }
 
     @ExceptionHandler({ ExistingCpfExceptionError.class })
     public ResponseEntity<Object> handleExistingCpfException(ExistingCpfExceptionError exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
+    }
+
+    @ExceptionHandler({ CpfInvalidError.class })
+    public ResponseEntity<Object> handleCPFInvalido(CpfInvalidError exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+    }
+
+    @ExceptionHandler({ RentalAlreadyReturnedError.class })
+    public ResponseEntity<Object> handleRentalAlreadyReturned(RentalAlreadyReturnedError exception) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
     }
 
     @ExceptionHandler({ Exception.class })
