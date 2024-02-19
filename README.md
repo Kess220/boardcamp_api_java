@@ -1,31 +1,32 @@
-
 # BoardCamp API Java
 
 Uma api em java, destinada a uma locada de jogos
 
+## Link do Deploy
 
 ## Documentação da API
+https://boardcamp-api-java-fabe.onrender.com
 
 #### Criação do cliente
 
 ```http
   POST /customers
 ```
-| Body        | Tipo       
-| :---------- | :--------- 
-| `name`      | `string` | 
-| `cpf`      | `string` | 
 
+| Body   | Tipo     |
+| :----- | :------- |
+| `name` | `string` |
+| `cpf`  | `string` |
 
 #### Busca Cliente pelo ID
 
 ```http
   GET /customers/{id}
 ```
-| Parâmetro       | Tipo       
-| :---------- | :--------- 
-| `id`      | `number` | 
 
+| Parâmetro | Tipo     |
+| :-------- | :------- |
+| `id`      | `number` |
 
 #### Criação do Game
 
@@ -33,14 +34,12 @@ Uma api em java, destinada a uma locada de jogos
   POST /games
 ```
 
-| Body        | Tipo       
-| :---------- | :--------- 
-| `name`      | `string` | 
-| `image`      | `string` | 
-| `stockTotal`      | `number` | 
-| `pricePerDay`      | `number` | 
-
-
+| Body          | Tipo     |
+| :------------ | :------- |
+| `name`        | `string` |
+| `image`       | `string` |
+| `stockTotal`  | `number` |
+| `pricePerDay` | `number` |
 
 #### Recebe todos os games
 
@@ -48,31 +47,28 @@ Uma api em java, destinada a uma locada de jogos
   GET /games
 ```
 
-
-
 #### Criação de um aluguel
 
 ```http
   POST /rentals
 ```
 
-| Body        | Tipo       
-| :---------- | :--------- 
-| `customerId`      | `number` | 
-| `gameId`      | `number` | 
-| `daysRented`      | `number` | 
-
+| Body         | Tipo     |
+| :----------- | :------- |
+| `customerId` | `number` |
+| `gameId`     | `number` |
+| `daysRented` | `number` |
 
 #### Retorno do Aluguel
 
 ```http
   PUT /rentals/{id}/return
 ```
-| Parâmetro       | Tipo       
-| :---------- | :--------- 
-| `id`      | `number` | 
+
+| Parâmetro | Tipo     |
+| :-------- | :------- |
+| `id`      | `number` |
 
 ## Autor
 
 - [@Kaio_Victor](https://www.github.com/Kess220)
-
