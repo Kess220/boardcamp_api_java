@@ -3,9 +3,10 @@
 Uma api em java, destinada a uma locada de jogos
 
 ## Link do Deploy
+https://boardcamp-api-java-fabe.onrender.com
+
 
 ## Documentação da API
-https://boardcamp-api-java-fabe.onrender.com
 
 #### Criação do cliente
 
